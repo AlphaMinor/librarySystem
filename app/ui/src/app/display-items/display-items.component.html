@@ -1,0 +1,136 @@
+<div class="table-div">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilterBooks($event.target.value)" placeholder="Filter Books By Name">
+  </mat-form-field>
+  <h4 class="text-center">Books</h4>
+  <div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSourceBooks">
+      <ng-container matColumnDef="#">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isbn">
+        <th mat-header-cell *matHeaderCellDef> ISBN </th>
+        <td mat-cell *matCellDef="let element"> {{ element.isbn }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef> Author </th>
+        <td mat-cell *matCellDef="let element"> {{ element.author }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="publisher">
+        <th mat-header-cell *matHeaderCellDef> Publisher </th>
+        <td mat-cell *matCellDef="let element"> {{ element.publisher }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="noOfPages">
+        <th mat-header-cell *matHeaderCellDef> Number of Pages </th>
+        <td mat-cell *matCellDef="let element"> {{ element.noOfPages }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="availability">
+        <th mat-header-cell *matHeaderCellDef> Availability </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.availability; else borrowed">
+            <img src="../../assets/images/flag-green.svg"
+                 width="30" height="30" alt="Available icon">
+          </ng-container>
+          <ng-template #borrowed>
+            <img src="../../assets/images/flag-red.svg"
+                 width="30" height="30" alt="Borrowed icon">
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <img src="../../assets/images/delete.svg" class="delete-icon"
+               width="30" height="30" alt="Delete icon" (click)="deleteBook(i)">
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsBooks; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsBooks;"></tr>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+<div class="table-div">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilterDVDs($event.target.value)" placeholder="Filter DVDs By Name">
+  </mat-form-field>
+  <h4 class="text-center">DVDs</h4>
+  <div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSourceDVDs">
+      <ng-container matColumnDef="#">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isbn">
+        <th mat-header-cell *matHeaderCellDef> ISBN </th>
+        <td mat-cell *matCellDef="let element"> {{ element.isbn }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="language">
+        <th mat-header-cell *matHeaderCellDef> Language(s) </th>
+        <td mat-cell *matCellDef="let element"> {{ element.languages }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="producer">
+        <th mat-header-cell *matHeaderCellDef> Producer </th>
+        <td mat-cell *matCellDef="let element"> {{ element.producer }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="subtitle">
+        <th mat-header-cell *matHeaderCellDef> Subtitle(s) </th>
+        <td mat-cell *matCellDef="let element"> {{ element.subtitles }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actor">
+        <th mat-header-cell *matHeaderCellDef> Actor(s) </th>
+        <td mat-cell *matCellDef="let element"> {{ element.actors }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="availability">
+        <th mat-header-cell *matHeaderCellDef> Availability </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.availability; else borrowed">
+            <img src="../../assets/images/flag-green.svg"
+                 width="30" height="30" alt="Available icon">
+          </ng-container>
+          <ng-template #borrowed>
+            <img src="../../assets/images/flag-red.svg"
+                 width="30" height="30" alt="Borrowed icon">
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <img src="../../assets/images/delete.svg" class="delete-icon"
+               width="30" height="30" alt="Delete icon" (click)="deleteDVD(i)">
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsDVDs; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsDVDs;"></tr>
+    </table>
+  </div>
+</div>

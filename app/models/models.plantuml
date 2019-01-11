@@ -1,0 +1,235 @@
+@startuml
+
+title __MODELS's Class Diagram__\n
+
+  package  {
+    package models {
+      class Book {
+          ~ authors : ArrayList<String>
+          - publisher : String
+          - totalNumberOfPages : int
+          {static} ~ allBooksInTheLibrary : ArrayList<Book>
+          {static} + MAX_BOOK_COUNT : int
+          {static} + currentBookCount : int
+          {static} + remainingBookCount : int
+          - availability : boolean
+          + isAvailability()
+          + setAvailability()
+          + Book()
+          + Book()
+          + Book()
+          + Book()
+          + Book()
+          + getAuthors()
+          + setAuthors()
+          + getPublisher()
+          + setPublisher()
+          + getTotalNumberOfPages()
+          + setTotalNumberOfPages()
+          {static} + getAllBooks()
+          + getDueDate()
+          + setDueDate()
+      }
+    }
+  }
+  
+
+  package  {
+    package models {
+      class DVD {
+          - producer : String
+          ~ availableLanguages : ArrayList<String>
+          ~ availableSubtitles : ArrayList<String>
+          ~ actors : ArrayList<String>
+          {static} ~ allDVDsInTheLibrary : ArrayList<DVD>
+          {static} + MAX_DVD_COUNT : int
+          {static} + currentDvdCount : int
+          {static} + remainingDVDCount : int
+          - availability : boolean
+          + DVD()
+          + DVD()
+          + DVD()
+          + DVD()
+          + DVD()
+          + isAvailability()
+          + setAvailability()
+          + getAvailableLanguages()
+          + setAvailableLanguages()
+          + getAvailableSubtitles()
+          + setAvailableSubtitles()
+          + getProducer()
+          + setProducer()
+          + getActors()
+          + setActors()
+          {static} + getAllDVDsInTheLibrary()
+          + getDueDate()
+          + setDueDate()
+      }
+    }
+  }
+  
+
+  package  {
+    package models {
+      class DateTime {
+          - day : int
+          - month : int
+          - year : int
+          - hours : int
+          - minutes : int
+          - seconds : int
+          + DateTime()
+          + DateTime()
+          + DateTime()
+          + getDay()
+          + getMonth()
+          + getYear()
+          + setDay()
+          + setMonth()
+          + setYear()
+          + getHours()
+          + setHours()
+          + getMinutes()
+          + setMinutes()
+          + getSeconds()
+          + setSeconds()
+          + setDate()
+          + getDate()
+          + getTime()
+          + setTime()
+          + toString()
+      }
+    }
+  }
+  
+
+  package  {
+    package models {
+      abstract class LibraryItem {
+          - type : String
+          - isbnNumber : String
+          - title : String
+          - publicationDate : String
+          + dueDate : String
+          - currentReader : String
+          - isAvailableToBorrow : boolean
+          ~ allItemsInTheLibrary : ArrayList<Book>
+          {static} + MAX_ITEM_COUNT : int
+          {static} + currentItemCount : int
+          {static} + remainingItemCount : int
+          {static} + dueDates : Map<String, String>
+          - fee : double
+          - borrowedPeriod : int
+          + LibraryItem()
+          + LibraryItem()
+          + LibraryItem()
+          + getType()
+          + setType()
+          + getDateBorrowed()
+          + setDateBorrowed()
+          + getCurrentReader()
+          + setCurrentReader()
+          + getIsbnNumber()
+          + setIsbnNumber()
+          + getTitle()
+          + setTitle()
+          + getPublicationDate()
+          + setPublicationDate()
+          + getIsAvailableToBorrow()
+          + setIsAvailableToBorrow()
+          + getFee()
+          + setFee()
+          + getBorrowedPeriod()
+          + setBorrowedPeriod()
+          {abstract} + getDueDate()
+          {abstract} + setDueDate()
+      }
+    }
+  }
+  
+
+  package  {
+    package models {
+      interface LibraryManager {
+          {abstract} + addItem()
+          {abstract} + deleteItem()
+          {abstract} + displayItemsList()
+          {abstract} + borrowItem()
+          {abstract} + returnItem()
+          {abstract} + generateReport()
+          {abstract} + makeReservation()
+      }
+    }
+  }
+  
+
+  package  {
+    package models {
+      class Reader {
+          - id : String
+          - firstName : String
+          - lastName : String
+          - phoneNumber : String
+          - email : String
+          {static} ~ allReaders : ArrayList<Reader>
+          + Reader()
+          + getDueDate()
+          + setDueDate()
+          + getId()
+          + setId()
+          + getName()
+          + getFirstName()
+          + setFirstName()
+          + getLastName()
+          + setLastName()
+          + setName()
+          + getPhoneNumber()
+          + setPhoneNumber()
+          + getEmail()
+          + setEmail()
+          {static} + getAllReaders()
+      }
+    }
+  }
+  
+
+  package  {
+    package models {
+      class WestminsterLibraryManager {
+          ~ sc : Scanner
+          ~ borrowedLibraryItems : ArrayList<LibraryItem>
+          ~ allLibraryItems : ArrayList<LibraryItem>
+          ~ itemsOverdue : ArrayList<LibraryItem>
+          ~ availableLanguages : ArrayList<String>
+          ~ availableSubtitles : ArrayList<String>
+          ~ actors : ArrayList<String>
+          ~ availability : boolean
+          {static} + main()
+          + addItem()
+          + deleteItem()
+          + displayItemsList()
+          + showBooks()
+          + borrowItem()
+          + returnItem()
+          + generateReport()
+          + makeReservation()
+      }
+    }
+  }
+  
+
+  Book -up-|> LibraryItem
+  DVD -up-|> LibraryItem
+  LibraryItem o-- DateTime : dateBorrowed
+  Reader -up-|> LibraryItem
+  WestminsterLibraryManager -up-|> LibraryManager
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

@@ -1,0 +1,29 @@
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Enter Reader ID" [formControl]="id" required [(ngModel)]="reader.id">
+    <mat-error *ngIf="id.invalid">{{getErrorIdMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Enter First Name" [formControl]="firstName" required [(ngModel)]="reader.firstName">
+    <mat-error *ngIf="firstName.invalid">{{getErrorReaderFirstNameMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Enter Last Name" [(ngModel)]="reader.lastName" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Enter Email" [formControl]="email" required [(ngModel)]="reader.email">
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Enter Phone Number" [formControl]="phoneNumber" [(ngModel)]="reader.phoneNumber">
+    <mat-error *ngIf="phoneNumber.invalid">{{getErrorPhoneNumberMessage()}}</mat-error>
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary" (click)="addReader(reader)" [disabled]="!reader.id || !reader.firstName || reader.email || reader.phoneNumber">
+    Add Reader
+  </button>
+</div>

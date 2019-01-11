@@ -1,0 +1,25 @@
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Enter ISBN" [formControl]="isbn" required [(ngModel)]="book.isbn">
+    <mat-error *ngIf="isbn.invalid">{{getErrorISBNMessage()}}</mat-error>
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary" (click)="checkAvailability(book)" [disabled]="!book.isbn">
+    Check Availability
+  </button>
+
+  <div *ngIf="available">
+    <mat-form-field>
+      <input matInput placeholder="Enter Reader ID" [formControl]="readerId" required [(ngModel)]="reader.id">
+      <mat-error *ngIf="readerId.invalid">{{getErrorReaderIdMessage()}}</mat-error>
+    </mat-form-field>
+
+    <button mat-stroked-button color="primary" (click)="borrowItem(reader)" [disabled]="!reader.id">
+      Borrow Item
+    </button>
+  </div>
+
+  <div *ngIf="available && display" class="unavailable-div">
+    Item is currently unavailable
+  </div>
+</div>

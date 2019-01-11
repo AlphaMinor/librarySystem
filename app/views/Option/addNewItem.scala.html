@@ -1,0 +1,34 @@
+@()(content: Html)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="b.js"></script>
+    </head>
+    <body>
+        <h1>Add New Item</h1>
+
+        <div>
+            Item Type :
+            <select>
+                <option>Book</option>
+                <option>DVD</option>
+            </select>
+
+
+                @content
+
+            <form action="">
+                <div>ISBN: <input type="text"></div>
+                <div>Title: <input type="text"></div>
+                <div>Sector: <input type="text"></div>
+                <div>Publication_Date: <input type="date"></div>
+                <div>Authors: <input type="text"></div>
+                <div>Publisher: <input type="text"></div>
+                <div>Total_Number_Of_Pages: <input type="number" min="1"></div>
+                <Button type="submit">Add Item</Button>  <br>
+            </form>
+        </div>
+    </body>
+</html>

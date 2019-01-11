@@ -1,0 +1,102 @@
+<h4 class="text-center">Add New Item</h4>
+<div>
+  <div>
+    <h5 (click)="displayBookFormMethod()">Book</h5>
+  </div>
+  <div>
+    <h5 (click)="displayDVDFormMethod()">DVD</h5>
+  </div>
+</div>
+
+<div>
+  <div *ngIf="displayBookForm">
+    <h6>Add New Book</h6>
+    <form [formGroup]="books">
+      <mat-form-field>
+        <input matInput placeholder="Enter ISBN" [formControl]="isbn" required [(ngModel)]="book.isbn">
+        <mat-error *ngIf="isbn.invalid">{{getErrorISBNMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Name" [formControl]="name" required [(ngModel)]="book.name">
+        <mat-error *ngIf="name.invalid">{{getErrorNameMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Author(s)" [(ngModel)]="book.authors" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Sector" [(ngModel)]="book.sector" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Publication Date" [(ngModel)]="book.publicationDate"
+               [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Publisher" [(ngModel)]="book.publisher"
+               [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="number" placeholder="Number of Pages" formControlName="noOfPages" min="1">
+        <mat-error *ngIf="books.get('noOfPages')?.invalid">Min pages: 1</mat-error>
+      </mat-form-field>
+
+      <button mat-stroked-button (click)="cancelBook()">Cancel</button>
+      <button mat-stroked-button color="primary" (click)="addBook(book)" [disabled]="!book.isbn || !book.name">
+        Add Book
+      </button>
+    </form>
+  </div>
+  <div *ngIf="displayDVDForm">
+    <h6>Add New DVD</h6>
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="Enter ISBN" [formControl]="isbn" required [(ngModel)]="dvd.isbn">
+        <mat-error *ngIf="isbn.invalid">{{getErrorISBNMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Name" [formControl]="name" required [(ngModel)]="dvd.name">
+        <mat-error *ngIf="name.invalid">{{getErrorNameMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Languages(s)" [(ngModel)]="dvd.languages"
+               [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Sector" [(ngModel)]="dvd.sector" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Publication Date" [(ngModel)]="dvd.publicationDate"
+               [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Actor(s)" [(ngModel)]="dvd.actors"
+               [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Subtitle(s)" [(ngModel)]="dvd.subtitles"
+               [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Producer" [(ngModel)]="dvd.producer"
+               [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+      <button mat-stroked-button (click)="cancelDVD()">Cancel</button>
+      <button mat-stroked-button color="primary" (click)="addDVD(dvd)" [disabled]="!dvd.isbn || !dvd.name">
+        Add DVD
+      </button>
+    </form>
+  </div>
+</div>

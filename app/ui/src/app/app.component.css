@@ -1,0 +1,20 @@
+.navbar-brand, .nav-link, .dropdown-item {
+  cursor: pointer !important;
+}
+
+.navbar-brand {
+  text-transform: uppercase;
+}
+
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple:hover {
+  background: #a8acaf radial-gradient(circle, transparent 1%, #a8acaf 1%) center/15000%;
+}
+.ripple:active {
+  background-color: #9ca5ad;
+  background-size: 100%;
+  transition: background 0s;
+}

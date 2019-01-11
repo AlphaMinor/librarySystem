@@ -1,0 +1,16 @@
+.table-div {
+  height: 395px;
+  overflow-y: auto;
+}
+
+.delete-icon {
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  padding-left: 5%;
+}

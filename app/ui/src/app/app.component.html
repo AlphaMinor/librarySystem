@@ -1,0 +1,48 @@
+<!--File containing the code for the navbar which is also the index page-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" (click)="navigate('home')">
+    <img src="../assets/images/books.svg" width="30" height="30" alt="Westminster Library">
+    Westminster Library</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" (click)="navigate('home')">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          Books/ DVDs
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item ripple" (click)="navigate('display items')">View Items</a>
+          <a class="dropdown-item ripple" (click)="navigate('add item')">Add New Item</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" (click)="navigate('borrow item')">Borrow An Item <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" (click)="navigate('return item')">Return An Item <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" (click)="navigate('generate report')">Generate Report <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" (click)="navigate('add reader')">Add Reader <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!--Display the components based on the navbar selection-->
+<app-home *ngIf="link === 'home'"></app-home>
+<app-display-items *ngIf="link === 'display items'"></app-display-items>
+<app-add-item *ngIf="link === 'add item'"></app-add-item>
+<app-borrow-item *ngIf="link === 'borrow item'"></app-borrow-item>
+<app-return-item *ngIf="link === 'return item'"></app-return-item>
+<app-add-reader *ngIf="link === 'add reader'"></app-add-reader>
